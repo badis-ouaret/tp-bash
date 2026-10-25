@@ -232,3 +232,20 @@ badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/t
 
 
 
+question de reflexion 1 :
+chmod 644 donne les droits suivant : -rw-r--r-- donc le user a les droits de lecture et d’écriture , le groupe et les autres (others)  ont le droit de lecture seulement.
+et non l'utilisateur propriétaire n'a pas le droit d’exécuter ce fichier
+
+question de reflexion 2 : nous mettons les variables entre guillemets dans les if pour éviter que le compilateur les lise mal. Dans le cas où la variable contient plusieurs mots avec des espaces entre eux le compilateur va croire qu'il y a plusieurs mots séparés au lieu d'une seule chaîne de caractères. Dans le cas où la variable est vide il est plus facile de l'identifiée.
+
+
+question de reflexion 3 :
+Oui le script continue à tort et affiche que la sauvegarde a été créé alors que c'est faux. Et cela est à cause du fait de ne pas avoir mis le -e
+Le pire est que les anciennes archives seront supprimées.
+
+question de reflexion 4 :
+Cron nécessite des chemins absolus car il a un environnement réduit (PATH réduit ) ce qui ne lui permet pas de trouver les scripts indiqué via des chemins relatifs. Quand on utilise une commande dans un terminal celle ci s’exécute dans le dossier courant (le dossier où on a ouvert le terminal ) et non dans le dossier personnel
+
+
+
+
