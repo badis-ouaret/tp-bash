@@ -1,0 +1,204 @@
+Exercice 1 :
+
+
+question 1 et 2 : ======================
+
+
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ mkdir log data 
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ ls 
+data  log
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ cd log; touch .log1 .log2 .log3
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash/log$ ls
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash/log$ ls -a 
+.  ..  .log1  .log2  .log3
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash/log$ cd ..
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ ls 
+data  log
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ cd log 
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash/log$ touch fic1 fic2
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash/log$ ls -a 
+.  ..  fic1  fic2  .log1  .log2  .log3
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash/log$ cd ..
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ mv log logs
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ ls 
+data  logs
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ ls -lh logs/.log*
+-rwxrwxrwx 1 root root 0 oct.  20 10:48 logs/.log1
+-rwxrwxrwx 1 root root 0 oct.  20 10:48 logs/.log2
+-rwxrwxrwx 1 root root 0 oct.  20 10:48 logs/.log3
+
+
+ou alors :
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ find -name .log*
+./logs/.log1
+./logs/.log2
+./logs/.log3
+===========================
+
+question 3 :
+
+
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ find -mtime -7
+.
+./.git
+./.git/branches
+./.git/COMMIT_EDITMSG
+./.git/config
+./.git/description
+./.git/HEAD
+./.git/hooks
+./.git/hooks/applypatch-msg.sample
+./.git/hooks/commit-msg.sample
+./.git/hooks/fsmonitor-watchman.sample
+./.git/hooks/post-update.sample
+./.git/hooks/pre-applypatch.sample
+./.git/hooks/pre-commit.sample
+./.git/hooks/pre-merge-commit.sample
+./.git/hooks/pre-push.sample
+./.git/hooks/pre-rebase.sample
+./.git/hooks/pre-receive.sample
+./.git/hooks/prepare-commit-msg.sample
+./.git/hooks/push-to-checkout.sample
+./.git/hooks/sendemail-validate.sample
+./.git/hooks/update.sample
+./.git/index
+./.git/info
+./.git/info/exclude
+./.git/logs
+./.git/logs/HEAD
+./.git/logs/refs
+./.git/logs/refs/heads
+./.git/logs/refs/heads/main
+./.git/logs/refs/remotes
+./.git/logs/refs/remotes/origin
+./.git/logs/refs/remotes/origin/main
+./.git/objects
+./.git/objects/06
+./.git/objects/06/2d0cac149ca20d81a68db458e559bed7488611
+./.git/objects/4b
+./.git/objects/4b/825dc642cb6eb9a060e54bf8d69288fbee4904
+./.git/objects/4c
+./.git/objects/4c/49bd78f1d08f2bc09fa0bd8191ed38b7dce5e3
+./.git/objects/5c
+./.git/objects/5c/4f980f4c9621d82bb3e05aff4ffa0f7840e04f
+./.git/objects/info
+./.git/objects/pack
+./.git/refs
+./.git/refs/heads
+./.git/refs/heads/main
+./.git/refs/remotes
+./.git/refs/remotes/origin
+./.git/refs/remotes/origin/main
+./.git/refs/tags
+./.gitignore
+./commandes
+./data
+./logs
+./logs/.log1
+./logs/.log2
+./logs/.log3
+./logs/fic1
+./logs/fic2
+==============================
+question 4 :
+tp-bash$ grep -ri "erreur"
+tp-bash$ echo "erreur" > logs/app1.log
+tp-bash$ grep -ri "erreur"
+logs/app1.log:erreur
+
+question 5 :
+tp-bash$ chmod u+x script.py
+tp-bash$ ls -lh script.py
+-rwxrwxrwx 1 root root 0 oct.  25 17:04 script.py
+tp-bash$ chmod u=rwx,g=rw,o=rw script.py
+tp-bash$ ls -lh script.py
+-rwxrw-rw- 1 root root 0 oct.  25 17:04 script.py
+
+
+exercice 2 :
+script :
+SEUIL=${1:-80}
+UTILISATION=$(df / | tail -1 | awk '{print $5}' | tr -d "%")
+if [ "$UTILISATION" -ge "$SEUIL" ]; then
+echo "Disque presque plein : ${UTILISATION} % "
+exit 1
+else
+echo "Disque OK : ${UTILISATION} % "
+exit 0
+fi
+
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ ./check_disk.sh
+Disque presque plein : 95 %
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ ./check_disk.sh 100
+Disque OK : 95 %
+
+
+exercice 3 :
+
+
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ nano backup.sh
+
+script :
+===========================DEBUT============================================
+#!/bin/bash
+set -Eeuo pipefail
+# -E fait en sorte que les fonctions et les substitutions heritent d'un trap ... ERR (pour que les erreurs soient mieux detectées)
+# -e  fait en sorte que le programme s'arrete dés la premiere erreur
+# -u fait en sorte qu'il y ait une erreur si une variable n\'est pas definie
+# -o pipefail fait en sorte qu'un pipe echoue si l\'une de ses commandes echoue
+
+DOSSIER="${1:-}" # premier argument ou rien s'il n\'est pas donné
+DEST="${2:-./sauvegardes}"
+
+# Vérification des arguments
+if [ -z "$DOSSIER" ]; then # vrai si DOSSIER est vide -z veut dire zero length
+    echo "Usage : $0 <dossier> [destination]" >&2  # affiche le format que doit suivre la commande (ce qui est entre [] est optionnel
+    exit 1
+fi
+
+if [ ! -d "$DOSSIER" ]; then  # -d est vrai si le dossier existe donc cette condition est vraie s'il n\'existe pas on doit alors prevenir l\'utilisateur
+    echo "Erreur : le dossier '$DOSSIER' n'existe pas." >&2
+    exit 1
+fi
+
+# Création de la destination et de l'archive horodatée
+mkdir -p "$DEST"
+
+HORODATAGE=$(date +%Y-%m-%d_%H-%M-%S)
+NOM=$(basename "$DOSSIER") # basename retire tout l'arboressance du chemin absolu et grade que le nom du dossier final
+ARCHIVE="$DEST/${NOM}_${HORODATAGE}.tar.gz"
+
+tar -czf "$ARCHIVE" -C "$(dirname "$DOSSIER")" "$NOM" # créer l'archive (-c pour creer -z au format gzip -f  dans le fichier indiqué. -C permet l\'extraction dans n\'importe
+# quel dossier . sinon il ne serait extractable que dans le dossier qui respecte le chemin absolu  du dossier archivé ( qui a le meme  dirname Dossier)
+# dirname fait exactement l'invers de basename elle enleve le nom du dossier final et garde tout le chemin
+echo "Sauvegarde créée : $ARCHIVE"
+
+# Suppression des sauvegardes de plus de 7 jours
+for fichier in "$DEST"/"${NOM}"_*.tar.gz; do # parcourir les fichier qui suivent cette expression (les fichiers archivés)
+    [ -e "$fichier" ] || continue          # motif sans correspondance : on passe ( quand aucun fichier ne correspond fichier sera ecrite literalement comme l'expression
+# regulière (l\'etoile sera considéré comme etant un caractere du nom du fichier -e evite d\'avoir une erreur))
+    if [ -n "$(find "$fichier" -mtime +7)" ]; then # ne renvoie rien si le fichier a ete modifié il y moins de 7 jours. -n verifie justement qu'il n\'y a rien. si queleuque
+#chose est renvoyé la condition sera vraie -n == not zero length
+         rm "$fichier"
+        echo "Supprimé (plus de 7 jours) : $fichier"
+    fi
+done
+=====================================================FIN======================================================
+
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ chmod u+x backup.sh
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ ./backup.sh
+Usage : ./backup.sh <dossier> [destination]
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ ls
+backup.sh  check_disk.sh  commandes  data  logs  script.py
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ ./backup.sh data
+Sauvegarde créée : ./sauvegardes/data_2026-10-25_18-51-35.tar.gz
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ ls
+backup.sh  check_disk.sh  commandes  data  logs  sauvegardes  script.py
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ ls sauvegardes
+data_2026-10-25_18-51-35.tar.gz
+
+
+
+
+
+
