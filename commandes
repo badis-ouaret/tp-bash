@@ -33,6 +33,12 @@ badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/t
 ./logs/.log1
 ./logs/.log2
 ./logs/.log3
+badis@Shoshin:/mnt/Documents/universite/specialite gl/5eme_annee/devOps/tp/tp2/tp-bash$ find -name *.log
+./logs/app1.log
+./logs/log1.log
+./logs/log2.log
+./logs/log3.log
+
 ===========================
 
 question 3 :
